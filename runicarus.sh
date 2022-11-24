@@ -1,0 +1,1 @@
+xvfb-run -a /game/icarus/Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe -Log -UserDir='C:\icarus' -SteamServerName="{$SERVERNAME}" -PORT="{$PORT}" -QueryPort="{$QUERYPORT}"
