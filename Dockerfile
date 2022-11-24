@@ -46,6 +46,8 @@ RUN /home/steam/steamcmd/steamcmd.sh \
     +app_update 2089300 validate \
     +quit
 
+USER root
+
 COPY runicarus.sh .
 RUN chmod +x /runicarus.sh
 
