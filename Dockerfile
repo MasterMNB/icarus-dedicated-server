@@ -21,12 +21,6 @@ RUN mkdir -p /home/steam/steamcmd
 RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/steam/steamcmd -zx
 RUN chown -R steam:steam /home/steam
 
-# Update steamcmd
-RUN mkdir -p /game/icarus
-RUN mkdir /data
-
-USER root
-
 # Download and install vc redist 2022
 RUN wget https://aka.ms/vs/17/release/vc_redist.x64.exe
 RUN chmod +x vc_redist.x64.exe
@@ -42,7 +36,8 @@ RUN wineboot --init ; sleep 5 ; xvfb-run -a wine vc_redist.x64.exe /quiet /nores
 COPY runicarus.sh .
 RUN chmod +x /runicarus.sh
 
-# Create Icarus Saves folder
+# Create Icarus Server and Saves folder
 RUN mkdir -p /root/icarus/drive_c/icarus
+RUN mkdir -p /game/icarus
 
 CMD ["/runicarus.sh"]
