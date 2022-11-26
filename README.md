@@ -1,4 +1,6 @@
 # icarus-dedicated-server
+This dedicated server will automatically download/update to the latest available server version when started. The dedicated server runs in Ubuntu 22.04 and wine
+[GIT REPO HERE](https://gitlab.com/fred-beauch/icarus-dedicated-server)
 
 ## Environment Vars
 - SERVERNAME : The name of the server on the server browser
