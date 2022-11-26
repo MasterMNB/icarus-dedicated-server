@@ -2,9 +2,9 @@ echo ====================
 echo ==  ICARUS SERVER ==
 echo ====================
 
-echo Server Name: %SERVERNAME
-echo Game Port  : %PORT
-echo Query Port : %QUERYPORT
+echo Server Name: $SERVERNAME
+echo Game Port  : $PORT
+echo Query Port : $QUERYPORT
 
 export WINEPREFIX=/root/icarus
 export WINEARCH=win64
@@ -24,7 +24,7 @@ echo ==============================================================
     +login anonymous \
     +app_update 2089300 \
     +quit
-    
+
 echo ==============================================================
 echo Starting Server - Buckle up prospectors!
 echo ==============================================================
