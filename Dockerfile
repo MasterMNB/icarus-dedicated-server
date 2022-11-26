@@ -46,4 +46,5 @@ RUN wineboot --init && \
 COPY runicarus.sh /
 RUN chmod +x /runicarus.sh
 
+ENTRYPOINT ["/bin/bash"]
 CMD ["/runicarus.sh"]
