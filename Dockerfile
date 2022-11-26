@@ -1,5 +1,15 @@
 FROM ubuntu:22.04
 
+# Default Environment Vars
+ENV SERVERNAME=IcarusServer
+ENV PORT=17777
+ENV QUERYPORT=27015
+
+# Create Steam, Icarus Server and Saves folder
+RUN mkdir -p /root/icarus/drive_c/icarus \ 
+             /game/icarus \
+             /home/steam/steamcmd
+
 # Get prereq packages
 RUN dpkg --add-architecture i386
 RUN apt-get update \
@@ -17,7 +27,6 @@ RUN apt-get update \
 
 # Install steamcmd
 RUN useradd --home-dir /home/steam --create-home steam
-RUN mkdir -p /home/steam/steamcmd
 RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/steam/steamcmd -zx
 RUN chown -R steam:steam /home/steam
 
@@ -35,13 +44,5 @@ RUN wineboot --init ; sleep 5 ; xvfb-run -a wine vc_redist.x64.exe /quiet /nores
 # Copy run script
 COPY runicarus.sh .
 RUN chmod +x /runicarus.sh
-
-# Create Icarus Server and Saves folder
-RUN mkdir -p /root/icarus/drive_c/icarus
-RUN mkdir -p /game/icarus
-
-ENV SERVERNAME=IcarusServer
-ENV PORT=17777
-ENV QUERYPORT=27015
 
 CMD ["/runicarus.sh"]
