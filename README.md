@@ -29,8 +29,6 @@ services:
     hostname: icarus-dedicated
     init: true
     restart: "unless-stopped"
-    stdin_open: true
-    tty: true
     networks:
       host:
     ports:
