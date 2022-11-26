@@ -10,9 +10,9 @@ export WINEPREFIX=/root/icarus
 export WINEARCH=win64
 export WINEPATH=/game/icarus
 
-echo ==============================================================
-echo Initialization of Wine
-echo ==============================================================
+echo ''
+echo Initializing Wine...
+echo ''
 wineboot --init > /dev/null 2>&1
 
 echo ==============================================================
