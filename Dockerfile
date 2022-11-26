@@ -40,4 +40,8 @@ RUN chmod +x /runicarus.sh
 RUN mkdir -p /root/icarus/drive_c/icarus
 RUN mkdir -p /game/icarus
 
+ENV SERVERNAME=IcarusServer
+ENV PORT=17777
+ENV QUERYPORT=27015
+
 CMD ["/runicarus.sh"]
