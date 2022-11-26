@@ -3,7 +3,7 @@ This dedicated server will automatically download/update to the latest available
 [GIT REPO HERE](https://gitlab.com/fred-beauch/icarus-dedicated-server)
 
 ## Environment Vars
-- SERVERNAME : The name of the server on the server browser
+- SERVERNAME : The name of the server on the server browser (You must specify this, the SessionName in the ServerSettings.ini file is always ignored)
 - PORT : The game port (not specifying it will default to 17777)
 - QUERYPORT : The query port (not specifying it will default to 27015)
 
