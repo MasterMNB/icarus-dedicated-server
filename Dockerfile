@@ -22,23 +22,8 @@ RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar 
 RUN chown -R steam:steam /home/steam
 
 # Update steamcmd
-RUN mkdir /home/steam/steamcmd/game
-RUN mkdir /game
+RUN mkdir -p /game/icarus
 RUN mkdir /data
-RUN chown -R steam:steam /game
-RUN chown -R steam:steam /data
-RUN ln -s /home/steam/steamcmd /game
-
-USER steam
-RUN /home/steam/steamcmd/steamcmd.sh +quit
-
-# Install Icarus Dedicated Server
-RUN /home/steam/steamcmd/steamcmd.sh \
-    +@sSteamCmdForcePlatformType windows \
-    +force_install_dir /game/icarus \
-    +login anonymous \
-    +app_update 2089300 validate \
-    +quit
 
 USER root
 
