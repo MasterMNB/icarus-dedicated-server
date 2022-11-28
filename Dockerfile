@@ -19,7 +19,6 @@ RUN apt-get update && \
     wget \
     gnupg2 \
     software-properties-common \
-    xvfb \
     wine \
     wine32 \
     wine64
@@ -40,7 +39,7 @@ RUN wget https://aka.ms/vs/17/release/vc_redist.x64.exe
 RUN chmod +x vc_redist.x64.exe
 RUN wineboot --init && \
     sleep 5 && \
-    xvfb-run -a wine vc_redist.x64.exe /quiet /norestart
+    wine vc_redist.x64.exe /quiet /norestart
 
 # Copy run script
 COPY runicarus.sh /

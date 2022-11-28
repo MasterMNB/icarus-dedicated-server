@@ -28,4 +28,4 @@ echo ==============================================================
 echo ==============================================================
 echo Starting Server - Buckle up prospectors!
 echo ==============================================================
-xvfb-run -a wine /game/icarus/Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe -Log -UserDir='C:\icarus' -SteamServerName="$SERVERNAME" -PORT="$PORT" -QueryPort="$QUERYPORT"
+wine /game/icarus/Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe -Log -UserDir='C:\icarus' -SteamServerName="$SERVERNAME" -PORT="$PORT" -QueryPort="$QUERYPORT"
