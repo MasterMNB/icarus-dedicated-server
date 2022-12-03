@@ -6,6 +6,8 @@ This dedicated server will automatically download/update to the latest available
 - SERVERNAME : The name of the server on the server browser (You must specify this, the SessionName in the ServerSettings.ini file is always ignored)
 - PORT : The game port (not specifying it will default to 17777)
 - QUERYPORT : The query port (not specifying it will default to 27015)
+- STEAM_USERID : Linux User ID used by the steam user and volumes
+- STEAM_GROUPID: Linux Group ID used by the steam user and volumes
 
 ## Ports
 The server requires 2 UDP Ports, the game port (Default 17777) and the query port (Default 27015)
@@ -13,11 +15,13 @@ They can be changed by specifying the PORT and QUERYPORT env vars respectively.
 
 ## Volumes
 - The server binaries are stored at /game/icarus
-- The server saves are stored at /root/icarus/drive_c/icarus
+- The server saves are stored at /home/steam/icarus/drive_c/icarus
+
+**Note:** by default, the volumes are owned by user 1000:1000 please set the permissions to the volumes accordingly. To change the user and group ID, simply define the STEAM_USERID and STEAM_GROUPID environment variables.
 
 ## Example Docker Run
 ```
-docker run -p 17777:17777/udp -p 27015:27015/udp -v data:/root/icarus/drive_c/icarus -v game:/game/icarus nerodon/icarus-dedicated:latest
+docker run -p 17777:17777/udp -p 27015:27015/udp -v data:/home/steam/icarus/drive_c/icarus -v game:/game/icarus nerodon/icarus-dedicated:latest
 ```
 ## Example Docker Compose
 ```
@@ -37,12 +41,14 @@ services:
       - 17777:17777/udp
       - 27015:27015/udp
     volumes:
-      - data:/root/icarus/drive_c/icarus
+      - data:/home/steam/icarus/drive_c/icarus
       - game:/game/icarus
     environment:
       - SERVERNAME=AmazingServer
       - PORT=17777
       - QUERYPORT=27015
+      - STEAM_USERID=1000
+      - STEAM_GROUPID=1000
 volumes:
   data: {}
   game: {}
