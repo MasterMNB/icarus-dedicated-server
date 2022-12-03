@@ -6,8 +6,8 @@ This dedicated server will automatically download/update to the latest available
 - SERVERNAME : The name of the server on the server browser (You must specify this, the SessionName in the ServerSettings.ini file is always ignored)
 - PORT : The game port (not specifying it will default to 17777)
 - QUERYPORT : The query port (not specifying it will default to 27015)
-- STEAM_USERID : Linux User ID used by the steam user and volumes
-- STEAM_GROUPID: Linux Group ID used by the steam user and volumes
+- STEAM_USERID : Linux User ID used by the steam user and volumes (not specifying it will default to 1000)
+- STEAM_GROUPID: Linux Group ID used by the steam user and volumes (not specifying it will default to 1000)
 
 ## Ports
 The server requires 2 UDP Ports, the game port (Default 17777) and the query port (Default 27015)
