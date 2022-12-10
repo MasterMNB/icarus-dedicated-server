@@ -21,7 +21,7 @@ They can be changed by specifying the PORT and QUERYPORT env vars respectively.
 
 ## Example Docker Run
 ```
-docker run -p 17777:17777/udp -p 27015:27015/udp -v data:/home/steam/icarus/.wine/drive_c/icarus -v game:/game/icarus nerodon/icarus-dedicated:latest
+docker run -p 17777:17777/udp -p 27015:27015/udp -v data:/home/steam/.wine/icarus/drive_c/icarus -v game:/game/icarus -e SERVERNAME=AmazingServer nerodon/icarus-dedicated:latest
 ```
 ## Example Docker Compose
 ```
@@ -41,7 +41,7 @@ services:
       - 17777:17777/udp
       - 27015:27015/udp
     volumes:
-      - data:/home/steam/icarus/.wine/drive_c/icarus
+      - data:/home/steam/.wine/icarus/drive_c/icarus
       - game:/game/icarus
     environment:
       - SERVERNAME=AmazingServer
