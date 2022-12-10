@@ -20,6 +20,11 @@ echo Initializing Wine...
 echo ''
 sudo -u steam wineboot --init > /dev/null 2>&1
 
+echo ''
+echo Changing wine folder permissions...
+echo ''
+chown -R "${STEAM_USERID}":"${STEAM_GROUPID}" /home/steam
+
 echo ==============================================================
 echo Updating/downloading game through steam
 echo ==============================================================

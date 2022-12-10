@@ -15,13 +15,13 @@ They can be changed by specifying the PORT and QUERYPORT env vars respectively.
 
 ## Volumes
 - The server binaries are stored at /game/icarus
-- The server saves are stored at /home/steam/icarus/drive_c/icarus
+- The server saves are stored at /home/steam/icarus/.wine/drive_c/icarus
 
 **Note:** by default, the volumes are owned by user 1000:1000 please set the permissions to the volumes accordingly. To change the user and group ID, simply define the STEAM_USERID and STEAM_GROUPID environment variables.
 
 ## Example Docker Run
 ```
-docker run -p 17777:17777/udp -p 27015:27015/udp -v data:/home/steam/icarus/drive_c/icarus -v game:/game/icarus nerodon/icarus-dedicated:latest
+docker run -p 17777:17777/udp -p 27015:27015/udp -v data:/home/steam/icarus/.wine/drive_c/icarus -v game:/game/icarus nerodon/icarus-dedicated:latest
 ```
 ## Example Docker Compose
 ```
@@ -41,7 +41,7 @@ services:
       - 17777:17777/udp
       - 27015:27015/udp
     volumes:
-      - data:/home/steam/icarus/drive_c/icarus
+      - data:/home/steam/icarus/.wine/drive_c/icarus
       - game:/game/icarus
     environment:
       - SERVERNAME=AmazingServer
