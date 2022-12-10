@@ -15,7 +15,7 @@ They can be changed by specifying the PORT and QUERYPORT env vars respectively.
 
 ## Volumes
 - The server binaries are stored at /game/icarus
-- The server saves are stored at /home/steam/icarus/.wine/drive_c/icarus
+- The server saves are stored at /home/steam/.wine/icarus/drive_c/icarus
 
 **Note:** by default, the volumes are owned by user 1000:1000 please set the permissions to the volumes accordingly. To change the user and group ID, simply define the STEAM_USERID and STEAM_GROUPID environment variables.
 
@@ -56,6 +56,13 @@ volumes:
 networks:
   host: {}
 ```
+
+## KNOWN ISSUES
+There is currently an issue with connections to steam to register the server in the in-game browser.
+This is not something that I can fix, RocketWerkz will need to make the steam server creation timeout higher or configurable before this will work reliably.
+If your server is not appearing in the list, check the logs, if you have the following message then this issue may be affecting you.
+**LogOnline: Warning: OSS: Async task 'FOnlineAsyncTaskSteamCreateServer bWasSuccessful: 0' failed in 15.016910 seconds**
+This issue occurs more often with lower end hardware.
 
 ## License
 MIT License
