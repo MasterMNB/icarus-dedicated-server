@@ -8,6 +8,9 @@ echo Query Por   : $QUERYPORT
 echo Steam UID   : $STEAM_USERID
 echo Steam GID   : $STEAM_GROUPID
 
+echo ====================
+echo Setting User ID...
+
 groupmod -g "${STEAM_GROUPID}" steam \
   && usermod -u "${STEAM_USERID}" -g "${STEAM_GROUPID}" steam
 
@@ -15,14 +18,10 @@ export WINEPREFIX=/home/steam/icarus
 export WINEARCH=win64
 export WINEPATH=/game/icarus
 
-echo ''
 echo Initializing Wine...
-echo ''
 sudo -u steam wineboot --init > /dev/null 2>&1
 
-echo ''
 echo Changing wine folder permissions...
-echo ''
 chown -R "${STEAM_USERID}":"${STEAM_GROUPID}" /home/steam
 
 echo ==============================================================
