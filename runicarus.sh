@@ -4,7 +4,7 @@ echo ====================
 
 echo Server Name : $SERVERNAME
 echo Game Port   : $PORT
-echo Query Por   : $QUERYPORT
+echo Query Port  : $QUERYPORT
 echo Steam UID   : $STEAM_USERID
 echo Steam GID   : $STEAM_GROUPID
 
