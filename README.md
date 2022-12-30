@@ -57,6 +57,12 @@ networks:
   host: {}
 ```
 
+## Config
+Under the data volume in the file:  
+Saved\Config\WindowsServer\ServerSettings.ini  
+More Infos to configure:  
+https://github.com/RocketWerkz/IcarusDedicatedServer/wiki/Server-Config-&-Launch-Parameters
+
 ## KNOWN ISSUES
 There is currently an issue with connections to steam to register the server in the in-game browser.
 This is not something that I can fix, RocketWerkz will need to make the steam server creation timeout higher or configurable before this will work reliably.
