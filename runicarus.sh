@@ -3,38 +3,44 @@ echo ==  ICARUS SERVER ==
 echo ====================
 
 echo Server Name : $SERVERNAME
-echo Game Port   : $PORT
-echo Query Port  : $QUERYPORT
-echo Steam UID   : $STEAM_USERID
-echo Steam GID   : $STEAM_GROUPID
+echo Game Port   : $SERVER_PORT
+echo Query Port  : $QUERY_PORT
+echo Container UID   : $(id -u)
+echo Container GID   : $(id -g)
 
 echo ====================
-echo Setting User ID...
-
-groupmod -g "${STEAM_GROUPID}" steam \
-  && usermod -u "${STEAM_USERID}" -g "${STEAM_GROUPID}" steam
-
-export WINEPREFIX=/home/steam/icarus
+export WINEPREFIX=/home/container/icarus
 export WINEARCH=win64
-export WINEPATH=/game/icarus
+export WINEPATH=/home/container/game/icarus
 
 echo Initializing Wine...
-sudo -u steam wineboot --init > /dev/null 2>&1
-
-echo Changing wine folder permissions...
-chown -R "${STEAM_USERID}":"${STEAM_GROUPID}" /home/steam
+wineboot --init > /dev/null 2>&1
 
 echo ==============================================================
 echo Updating/downloading game through steam
 echo ==============================================================
-sudo -u steam /home/steam/steamcmd/steamcmd.sh \
+./steamcmd/steamcmd.sh \
     +@sSteamCmdForcePlatformType windows \
-    +force_install_dir /game/icarus \
+    +force_install_dir /home/container/game/icarus \
     +login anonymous \
     +app_update 2089300 \
     +quit
 
 echo ==============================================================
+echo Testing for files
+echo ==============================================================
+if [ ! -f "./game/icarus/Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe" ]; then
+  echo Install not found, check internet and volume permissions
+  exit
+fi
+
+echo ==============================================================
 echo Starting Server - Buckle up prospectors!
 echo ==============================================================
-sudo -u steam wine /game/icarus/Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe -Log -UserDir='C:\icarus' -SteamServerName="${SERVERNAME}" -PORT="${PORT}" -QueryPort="${QUERYPORT}"
+# Replace Startup Variables
+MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
+echo ":/home/container$ ${MODIFIED_STARTUP}"
+
+# Run the Server
+wine ./game/icarus/Icarus/Binaries/Win64/${MODIFIED_STARTUP}
+#wine ./game/icarus/Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe -Log -UserDir='C:\icarus' -SteamServerName="${SERVERNAME}" -PORT="${PORT}" -QueryPort="${QUERYPORT}"
