@@ -1,7 +1,11 @@
 FROM ubuntu:22.04
 
 # Default Environment Vars
+ENV SERVERNAME="Icarus Server"
+ENV PORT=17777
+ENV QUERYPORT=27015
 ENV USER=container HOME=/home/container
+ENV STARTUP='IcarusServer-Win64-Shipping.exe -Log -UserDir="C:\icarus" -SteamServerName="${SERVERNAME}" -PORT="${PORT}" -QueryPort="${QUERYPORT}"'
 
 # Get prereq packages
 RUN dpkg --add-architecture i386
@@ -15,18 +19,24 @@ RUN apt-get update && \
     wine \
     wine64
 
-RUN adduser -D -h /home/container container
-
-USER container
-WORKDIR /home/container
-
-# Create various folders
-RUN mkdir -p /root/icarus/drive_c/icarus \
-             ./game/icarus
-
 # Copy run script
 COPY ./runicarus.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
+
+# ADD USER
+RUN useradd --no-log-init -ms /bin/bash container
+
+# Create C: drive folder and give to owner
+RUN mkdir -p /root/icarus/drive_c/icarus \
+    chown container /root/icarus/drive_c/icarus
+
+# Switch USER
+USER container
+WORKDIR /home/container
+
+# Create folders
+RUN mkdir -p ./game/icarus \
+    mkdir -p ./steamcmd
 
 # Install SteamCMD
 RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/container/steamcmd -zx
