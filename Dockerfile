@@ -2,8 +2,8 @@ FROM ubuntu:22.04
 
 # Default Environment Vars
 ENV SERVERNAME="Icarus Server"
-ENV PORT=17777
-ENV QUERYPORT=27015
+ENV SERVER_PORT=17777
+ENV QUERY_PORT=27015
 ENV USER=container HOME=/home/container
 ENV STARTUP='IcarusServer-Win64-Shipping.exe -Log -UserDir="C:\icarus" -SteamServerName="${SERVERNAME}" -PORT="${PORT}" -QueryPort="${QUERYPORT}"'
 
