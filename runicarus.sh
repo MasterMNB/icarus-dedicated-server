@@ -43,4 +43,3 @@ echo ":/home/container$ ${MODIFIED_STARTUP}"
 
 # Run the Server
 wine ./game/icarus/Icarus/Binaries/Win64/${MODIFIED_STARTUP}
-#wine ./game/icarus/Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe -Log -UserDir='C:\icarus' -SteamServerName="${SERVERNAME}" -PORT="${PORT}" -QueryPort="${QUERYPORT}"
