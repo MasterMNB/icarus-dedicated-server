@@ -5,7 +5,7 @@ ENV SERVERNAME="Icarus Server"
 ENV SERVER_PORT=17777
 ENV QUERY_PORT=27015
 ENV USER=container HOME=/home/container
-ENV STARTUP='IcarusServer-Win64-Shipping.exe -Log -UserDir="C:\icarus" -SteamServerName="${SERVERNAME}" -PORT="${PORT}" -QueryPort="${QUERYPORT}"'
+ENV STARTUP='IcarusServer-Win64-Shipping.exe -Log -UserDir="C:\icarus" -SteamServerName="${SERVERNAME}" -PORT="${SERVER_PORT}" -QueryPort="${QUERY_PORT}"'
 
 # Get prereq packages
 RUN dpkg --add-architecture i386
