@@ -1,7 +1,7 @@
 # icarus-dedicated-server for pterodactyl still in DEV STATE!
 This dedicated server will automatically download/update to the latest available server version when started. The dedicated server runs in Ubuntu 22.04 and wine
 
-###Pterodactyl config
+### Pterodactyl config
 [Help here](https://pterodactyl.io/community/config/eggs/creating_a_custom_egg.html)
 
 ### Environment Vars
