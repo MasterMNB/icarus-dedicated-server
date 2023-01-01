@@ -26,16 +26,12 @@ RUN chmod +x /entrypoint.sh
 # ADD USER
 RUN useradd --no-log-init -ms /bin/bash container
 
-# Create C: drive folder and give to owner
-RUN mkdir -p /root/icarus/drive_c/icarus \
-    chown container /root/icarus/drive_c/icarus
-
 # Switch USER
 USER container
 WORKDIR /home/container
 
 # Create folders
-RUN mkdir -p ./game/icarus \
+RUN mkdir -p ./game/icarus; \
     mkdir -p ./steamcmd
 
 # Install SteamCMD
