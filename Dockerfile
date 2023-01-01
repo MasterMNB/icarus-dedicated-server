@@ -37,4 +37,4 @@ RUN mkdir -p ./game/icarus; \
 # Install SteamCMD
 RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/container/steamcmd -zx
 
-CMD ["/bin/bash", "/runicarus.sh"]
+CMD ["/bin/bash", "/entrypoint.sh"]
