@@ -4,8 +4,17 @@ FROM ubuntu:22.04
 ENV SERVERNAME="Icarus Server"
 ENV SERVER_PORT=17777
 ENV QUERY_PORT=27015
-ENV USER=container HOME=/home/container
-ENV STARTUP='IcarusServer-Win64-Shipping.exe -Log -UserDir="C:\icarus" -SteamServerName="${SERVERNAME}" -PORT="${SERVER_PORT}" -QueryPort="${QUERY_PORT}"'
+ENV ASYNC_TIMEOUT=60
+ENV BRANCH=public
+
+ENV USER=container
+ENV HOME=/home/${USER}
+
+ENV WINEARCH=win64
+ENV WINEPATH=${HOME}/game/icarus
+ENV WINEPREFIX=${HOME}/icarus
+
+ENV STARTUP='wine ${WINEPATH}/Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe -Log -UserDir="C:\icarus" -SteamServerName="${SERVERNAME}" -PORT="${SERVER_PORT}" -QueryPort="${QUERY_PORT}"'
 
 # Get prereq packages
 RUN dpkg --add-architecture i386
@@ -31,7 +40,8 @@ USER container
 WORKDIR /home/container
 
 # Create folders
-RUN mkdir -p ./game/icarus; \
+RUN mkdir -p ${WINEPATH}; \
+    mkdir -p ${WINEPREFIX}/drive_c/icarus; \
     mkdir -p ./steamcmd
 
 # Install SteamCMD
