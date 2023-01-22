@@ -2,11 +2,19 @@ FROM ubuntu:22.04
 
 # Default Environment Vars
 ENV SERVERNAME="Icarus Server"
-ENV PORT=17777
-ENV QUERYPORT=27015
-# Default User/Group ID
-ENV STEAM_USERID=1000
-ENV STEAM_GROUPID=1000
+ENV SERVER_PORT=17777
+ENV QUERY_PORT=27015
+ENV ASYNC_TIMEOUT=60
+ENV BRANCH=public
+
+ENV USER=container
+ENV HOME=/home/${USER}
+
+ENV WINEARCH=win64
+ENV WINEPATH=${HOME}/game/icarus
+ENV WINEPREFIX=${HOME}/icarus
+
+ENV STARTUP='wine ${WINEPATH}/Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe -Log -UserDir="C:\icarus" -SteamServerName="${SERVERNAME}" -PORT="${SERVER_PORT}" -QueryPort="${QUERY_PORT}"'
 
 # Get prereq packages
 RUN dpkg --add-architecture i386
@@ -14,31 +22,29 @@ RUN apt-get update && \
     apt-get install --no-install-recommends -y \
     ca-certificates \
     lib32gcc-s1 \
-    sudo \
     curl \
-    wget \
     gnupg2 \
     software-properties-common \
     wine \
     wine64
 
-# Create various folders
-RUN mkdir -p /root/icarus/drive_c/icarus \ 
-             /game/icarus \
-             /home/steam/steamcmd
-
 # Copy run script
-COPY runicarus.sh /
-RUN chmod +x /runicarus.sh
+COPY ./runicarus.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
 
-# Create Steam user
-RUN groupadd -g "${STEAM_GROUPID}" steam \
-  && useradd --create-home --no-log-init -u "${STEAM_USERID}" -g "${STEAM_GROUPID}" steam
-RUN chown -R "${STEAM_USERID}":"${STEAM_GROUPID}" /home/steam
-RUN chown -R "${STEAM_USERID}":"${STEAM_GROUPID}" /game/icarus
+# ADD USER
+RUN useradd --no-log-init -ms /bin/bash container
+
+# Switch USER
+USER container
+WORKDIR /home/container
+
+# Create folders
+RUN mkdir -p ${WINEPATH}; \
+    mkdir -p ${WINEPREFIX}/drive_c/icarus; \
+    mkdir -p ./steamcmd
 
 # Install SteamCMD
-RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/steam/steamcmd -zx
+RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/container/steamcmd -zx
 
-ENTRYPOINT ["/bin/bash"]
-CMD ["/runicarus.sh"]
+CMD ["/bin/bash", "/entrypoint.sh"]
