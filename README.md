@@ -1,8 +1,13 @@
 # icarus-dedicated-server, can also used for pterodactyl (still in DEV STATE!)
 This dedicated server will automatically download/update to the latest available server version when started. The dedicated server runs in Ubuntu 22.04 and wine
 
+[Docker Hub](https://hub.docker.com/repository/docker/mastermnb/icarus-dedicated-server)  
+[Repo](https://github.com/MasterMNB/icarus-dedicated-server)  
+[Based on Repo](https://gitlab.com/fred-beauch/icarus-dedicated-server)  
+
+
 ### Pterodactyl config
-[Help here](https://pterodactyl.io/community/config/eggs/creating_a_custom_egg.html)
+[Help here](https://pterodactyl.io/community/config/eggs/creating_a_custom_egg.html)  
 
 ### Environment Vars
 - SERVERNAME : The name of the server on the server browser (You must specify this, the SessionName in the ServerSettings.ini file is always ignored)
