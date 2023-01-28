@@ -1,7 +1,9 @@
-# icarus-dedicated-server, can also used for pterodactyl (still in DEV STATE!)
-This dedicated server will automatically download/update to the latest available server version when started. The dedicated server runs in Ubuntu 22.04 and wine
+# Icarus dedicated game server
+# Warning from Version 10 on, some changes where made to USER & Paths  
+This dedicated server will automatically download/update to the latest available server version when started. The dedicated server runs in Ubuntu 22.04 and wine.  
+Can also used for pterodactyl (still in DEV STATE!)  
 
-[Docker Hub](https://hub.docker.com/repository/docker/mastermnb/icarus-dedicated-server)  
+[Docker Hub](https://hub.docker.com/r/mastermnb/icarus-dedicated-server)  
 [Repo](https://github.com/MasterMNB/icarus-dedicated-server)  
 [Based on Repo](https://gitlab.com/fred-beauch/icarus-dedicated-server)  
 

@@ -29,7 +29,7 @@ RUN apt-get update && \
     wine64
 
 # Copy run script
-COPY ./runicarus.sh /entrypoint.sh
+COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # ADD USER
