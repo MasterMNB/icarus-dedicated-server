@@ -76,9 +76,10 @@ volumes:
 ```
 
 ### Config  
-Under the data volume in the file:  
+Under the data volume in the file (gets overwritten from the environment variables) are the settings stored:  
 Saved\Config\WindowsServer\ServerSettings.ini  
-More Infos to configure:  
+To change launch parameters you can set your own environment variable "STARTUP", look into the Dockerfile for the default value.  
+More Infos how to configure:  
 https://github.com/RocketWerkz/IcarusDedicatedServer/wiki/Server-Config-&-Launch-Parameters  
 
 

@@ -26,7 +26,8 @@ RUN apt-get update && \
     gnupg2 \
     software-properties-common \
     wine \
-    wine64
+    wine64 \
+    && rm -rf /var/lib/apt/lists/*
 
 # Copy run script
 COPY ./entrypoint.sh /entrypoint.sh
