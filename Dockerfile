@@ -38,7 +38,7 @@ RUN useradd --no-log-init -ms /bin/bash ${USER}
 
 # Switch USER
 USER ${USER}
-WORKDIR /home/${USER}
+WORKDIR ${HOME}
 
 # Create folders
 RUN mkdir -p ${WINEPATH}; \
@@ -46,6 +46,6 @@ RUN mkdir -p ${WINEPATH}; \
     mkdir -p ./steamcmd
 
 # Install SteamCMD
-RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/${USER}/steamcmd -zx
+RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C ${HOME}/steamcmd -zx
 
 CMD ["/bin/bash", "/entrypoint.sh"]
