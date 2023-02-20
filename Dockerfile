@@ -34,11 +34,11 @@ COPY ./entrypoint.sh /entrypoint.sh
 RUN chmod +x /entrypoint.sh
 
 # ADD USER
-RUN useradd --no-log-init -ms /bin/bash container
+RUN useradd --no-log-init -ms /bin/bash ${USER}
 
 # Switch USER
-USER container
-WORKDIR /home/container
+USER ${USER}
+WORKDIR /home/${USER}
 
 # Create folders
 RUN mkdir -p ${WINEPATH}; \
@@ -46,6 +46,6 @@ RUN mkdir -p ${WINEPATH}; \
     mkdir -p ./steamcmd
 
 # Install SteamCMD
-RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/container/steamcmd -zx
+RUN curl -s http://media.steampowered.com/installer/steamcmd_linux.tar.gz | tar -v -C /home/${USER}/steamcmd -zx
 
 CMD ["/bin/bash", "/entrypoint.sh"]
