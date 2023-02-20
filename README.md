@@ -7,7 +7,7 @@ This dedicated server will automatically download/update to the latest available
 
 
 ### For Pterodactyl
-Consider this [Link](https://github.com/parkervcp/eggs/blob/master/game_eggs/steamcmd_servers/icarus)
+Consider this [Link](https://github.com/parkervcp/eggs/blob/master/game_eggs/steamcmd_servers/icarus)  
 [Help here](https://pterodactyl.io/community/config/eggs/creating_a_custom_egg.html)  
 
 ### Environment Vars
