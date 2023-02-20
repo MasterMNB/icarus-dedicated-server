@@ -1,14 +1,13 @@
-# Icarus dedicated game server
-# Warning from Version 10 on, some changes where made to USER & Paths  
+# Icarus dedicated game server 
 This dedicated server will automatically download/update to the latest available server version when started. The dedicated server runs in Ubuntu 22.04 and wine.  
-Can also used for pterodactyl (still in DEV STATE!)  
 
 [Docker Hub](https://hub.docker.com/r/mastermnb/icarus-dedicated-server)  
 [Repo](https://github.com/MasterMNB/icarus-dedicated-server)  
 [Based on Repo](https://gitlab.com/fred-beauch/icarus-dedicated-server)  
 
 
-### Pterodactyl config
+### For Pterodactyl
+Consider this [Link](https://github.com/parkervcp/eggs/blob/master/game_eggs/steamcmd_servers/icarus)
 [Help here](https://pterodactyl.io/community/config/eggs/creating_a_custom_egg.html)  
 
 ### Environment Vars
@@ -79,6 +78,7 @@ volumes:
 Under the data volume in the file (gets overwritten from the environment variables) are the settings stored:  
 Saved\Config\WindowsServer\ServerSettings.ini  
 To change launch parameters you can set your own environment variable "STARTUP", look into the Dockerfile for the default value.  
+Write the variable in a ".env" file or you can not use other ENV variables in that string.  
 More Infos how to configure:  
 https://github.com/RocketWerkz/IcarusDedicatedServer/wiki/Server-Config-&-Launch-Parameters  
 
