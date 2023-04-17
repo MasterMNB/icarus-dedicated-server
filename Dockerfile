@@ -5,7 +5,11 @@ ENV SERVERNAME="Icarus Server"
 ENV SERVER_PORT=17777
 ENV QUERY_PORT=27015
 ENV ASYNC_TIMEOUT=60
+ENV APPID=2089300
 ENV BRANCH=public
+ENV STEAMUSER=anonymous
+ENV STEAMPASS=
+ENV AUTOUPDATE=1
 
 ENV USER=container
 ENV HOME=/home/${USER}
@@ -31,7 +35,9 @@ RUN apt-get update && \
 
 # Copy run script
 COPY ./entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
+COPY ./update.sh /update.sh
+RUN chmod +x /entrypoint.sh && \
+    chmod +x /update.sh
 
 # ADD USER
 RUN useradd --no-log-init -ms /bin/bash ${USER}

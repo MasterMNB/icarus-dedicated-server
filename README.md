@@ -1,5 +1,6 @@
 # Icarus dedicated game server 
-This dedicated server will automatically download/update to the latest available server version when started. The dedicated server runs in Ubuntu 22.04 and wine.  
+This dedicated server will automatically download/update to the latest available server version when started.  
+The dedicated server runs in Ubuntu 22.04 and wine.  
 
 [Docker Hub](https://hub.docker.com/r/mastermnb/icarus-dedicated-server)  
 [Repo](https://github.com/MasterMNB/icarus-dedicated-server)  
@@ -10,17 +11,18 @@ This dedicated server will automatically download/update to the latest available
 Consider this [Link](https://github.com/parkervcp/eggs/blob/master/game_eggs/steamcmd_servers/icarus)  
 [Help here](https://pterodactyl.io/community/config/eggs/creating_a_custom_egg.html)  
 
-### Environment Vars
-- SERVERNAME : The name of the server on the server browser (You must specify this, the SessionName in the ServerSettings.ini file is always ignored)
-- SERVER_PORT : The game port (not specifying it will default to 17777)
-- QUERY_PORT : The query port (not specifying it will default to 27015)
-- ASYNC_TIMEOUT: Sets the Async timeout to this value in the Engine.ini on server start (not specifying it will default to 60)
-- BRANCH: Version branch (public or experimental, not specifying it will default to public)
+### Environment Vars  
+- SERVERNAME : The name of the server on the server browser (You must specify this, the SessionName in the ServerSettings.ini file is always ignored)  
+- SERVER_PORT : The game port (not specifying it will default to 17777)  
+- QUERY_PORT : The query port (not specifying it will default to 27015)  
+- ASYNC_TIMEOUT: Sets the Async timeout to this value in the Engine.ini on server start (not specifying it will default to 60)  
+- BRANCH: Version branch (public or experimental, not specifying it will default to public)  
+- AUTOUPDATE: Activates a version check that runs every 3600s, which restarts the server when a new version is available.(not specifying it will default to 1)  
 - All the other, see in Docker Compose Example and the Config section (all are optional)  
 
 ### Ports
-The server requires 2 UDP Ports, the game port (Default 17777) and the query port (Default 27015)
-They can be changed by specifying the PORT and QUERYPORT env vars respectively.
+The server requires 2 UDP Ports, the game port (Default 17777) and the query port (Default 27015)  
+They can be changed by specifying the PORT and QUERYPORT env vars respectively.  
 
 ### Volumes
 - The server binaries are stored at /home/container/game/icarus
@@ -53,6 +55,7 @@ services:
     environment:
       - ASYNC_TIMEOUT=60
       - BRANCH=public
+      - AUTOUPDATE=1
       - SERVERNAME=AmazingServer
       - SERVER_PORT=17777
       - QUERY_PORT=27015

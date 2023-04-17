@@ -7,6 +7,7 @@ echo Max Players : $MAX_PLAYERS
 echo Game Port   : $SERVER_PORT
 echo Query Port  : $QUERY_PORT
 echo Branch      : $BRANCH
+echo Auto update : $AUTOUPDATE
 echo Container UID   : $(id -u)
 echo Container GID   : $(id -g)
 
@@ -20,8 +21,8 @@ echo ==============================================================
 ./steamcmd/steamcmd.sh \
     +@sSteamCmdForcePlatformType windows \
     +force_install_dir /home/container/game/icarus \
-    +login anonymous \
-    +app_update 2089300 -beta "${BRANCH}" validate \
+    +login "${STEAMUSER}" "${STEAMPASS}" \
+    +app_update "${APPID}" -beta "${BRANCH}" validate \
     +quit
 
 echo ==============================================================
@@ -31,6 +32,8 @@ if [ ! -f "${WINEPATH}/Icarus/Binaries/Win64/IcarusServer-Win64-Shipping.exe" ];
   echo Install not found, check internet and volume permissions
   exit
 fi
+
+rm -f ${HOME}/pid.file
 
 configPath="${WINEPREFIX}/drive_c/icarus/Saved/Config/WindowsServer"
 echo ==============================================================
@@ -84,7 +87,15 @@ echo Starting Server - Buckle up prospectors!
 echo ==============================================================
 # Replace Startup Variables
 MODIFIED_STARTUP=`eval echo $(echo ${STARTUP} | sed -e 's/{{/${/g' -e 's/}}/}/g')`
-echo ":/home/container$ ${MODIFIED_STARTUP}"
+echo ":${HOME}$ ${MODIFIED_STARTUP}"
+
+# turn on bash's job control
+set -m
 
 # Run the Server
-${MODIFIED_STARTUP}
+${MODIFIED_STARTUP} &
+echo $! >${HOME}/pid.file &
+/update.sh
+
+# bring the primary process back into the foreground
+fg %1
