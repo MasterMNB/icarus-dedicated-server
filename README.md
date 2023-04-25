@@ -32,7 +32,7 @@ They can be changed by specifying the PORT and QUERYPORT env vars respectively.
 
 ### Example Docker Run
 ```
-docker run -p 17777:17777/udp -p 27015:27015/udp -v data:/home/container/icarus/drive_c/icarus -v game:/home/container/game/icarus -e SERVERNAME=AmazingServer mastermnb/icarus-dedicated-server:latest
+docker run --restart unless-stopped -p 17777:17777/udp -p 27015:27015/udp -v data:/home/container/icarus/drive_c/icarus -v game:/home/container/game/icarus -e SERVERNAME=AmazingServer mastermnb/icarus-dedicated-server:latest
 ```
 ### Example Docker Compose
 ```
